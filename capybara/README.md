@@ -10,6 +10,6 @@
 
         $ docker-compose build
 
-1. Run container:
+1. Run test suite:
 
-        $ docker-compose run --rm app sh
+        $ docker-compose up
