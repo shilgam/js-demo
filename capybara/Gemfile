@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'apparition' # A Chrome driver for Capybara
 gem 'capybara'
 gem 'rspec'
