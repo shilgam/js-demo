@@ -51,13 +51,22 @@ RSpec.configure do |config|
 
   config.include Capybara::DSL
 
+  def headless_flag(env_var)
+    # ENV.has_key?(env_var) ? '--headless' : '--start-maximized'
+  end
+
+  options = {
+    'args' => [
+      '--no-default-browser-check',
+      '--start-maximized'
+    ]
+  }
+
+  # run in headless mode in $HEADLESS env var presented
+  options['args'].push('--headless') if ENV['HEADLESS']
+
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    "chromeOptions" => {
-      "args" => [
-        '--no-default-browser-check',
-        '--start-maximized'
-      ]
-    }
+    'goog:chromeOptions' => options
   )
 
   Capybara.register_driver :selenium do |app|
@@ -72,6 +81,7 @@ RSpec.configure do |config|
   Capybara.configure do |config|
     config.app_host = ENV['APP_HOST']
     config.default_driver = :selenium
+    config.javascript_driver = :chrome
     config.run_server = false
   end
 

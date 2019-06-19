@@ -11,6 +11,7 @@ services:
       - SELENIUM_HOST=hub
       - SELENIUM_PORT=4444
       - APP_HOST=http://acc-lci.ninthdecimal.com
+      - HEADLESS # should be set explicitly
     entrypoint: ["./bin/test.sh"]
     command: rspec
 
