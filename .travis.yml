@@ -5,5 +5,8 @@ jobs:
   include:
     - stage: "Tests"
       name: "Capybara"
-      script:
-        - HEADLESS=1 docker-compose --file capybara/docker-compose.yml run --rm app rspec
+      script: |
+        HEADLESS=1 \
+          APP_USERNAME=$APP_USERNAME \
+          APP_PASSWORD=$APP_PASSWORD \
+          docker-compose --file capybara/docker-compose.yml run --rm app rspec
