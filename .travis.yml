@@ -6,4 +6,4 @@ jobs:
     - stage: "Tests"
       name: "Capybara"
       script:
-        - docker-compose --file capybara/docker-compose.yml up
+        - docker-compose --file capybara/docker-compose.yml run --rm app rspec

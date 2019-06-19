@@ -1,5 +1,6 @@
 describe "Capybara features" do
   it "Fake rspec test" do
-    expect(1).to eq 1
+    visit '/'
+    expect(page).to have_css('.form-signin')
   end
 end
