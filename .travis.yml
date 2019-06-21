@@ -10,3 +10,7 @@ jobs:
           APP_USERNAME=$APP_USERNAME \
           APP_PASSWORD=$APP_PASSWORD \
           docker-compose --file capybara/docker-compose.yml run --rm app rspec
+
+    - name: "Cypress"
+      script: |
+        docker-compose --file e2e/docker-compose.yml up --exit-code-from cypress
