@@ -17,4 +17,4 @@ jobs:
       script: |
         cd cypress
 
-        docker-compose run --rm cypress
+        docker-compose --file docker-compose.yml run --rm cypress

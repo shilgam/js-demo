@@ -1,12 +1,16 @@
 version: '3.2'
+
+# run web application and open Cypress Test Runner in a Docker container
+# but send the X11 output to the server running on the host machine
+# so you can see and interact with the tests. Most services are configured
+# in the file docker-compose.yml, this file only overrides variables
+# necessary for "cypress open" to work with X11.
+# We need to use both file names to run:
+#
+#   docker-compose -f docker-compose.yml -f docker-compose-open.yml up --exit-code-from cypress
+#
 services:
-  sentimentalyzer:
-    build: ./app/
-    environment:
-      - PORT=8123
   cypress:
-    # the Docker image to use from https://github.com/cypress-io/cypress-docker-images
-    image: "cypress/included:3.2.0"
     # pass custom command to start Cypress otherwise it will use the entrypoint
     # specified in the Cypress Docker image.
     # also pass "--project <folder>" so that when Cypress opens
@@ -16,19 +20,16 @@ services:
     depends_on:
       - sentimentalyzer
     environment:
-      - CYPRESS_baseUrl=http://sentimentalyzer:8123
       # pass environment variable DISPLAY if you need
       # to show Cypress GUI on the host system
       # typically you get the IP of the host system
       # and set DISPLAY
-      #   IP=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
+      #   IP=$(ipconfig getifaddr en0)
       #   DISPLAY=$IP:0
       # run docker-compose with
       #   DISPLAY=$IP:0 docker-compose up --exit-code-from cypress
       - DISPLAY
-    working_dir: /cypress
     volumes:
-      - ./:/cypress
       # allow connecting from Docker container to
       # external XVFB server running on the host machine
       # see https://sourabhbajaj.com/blog/2017/02/07/gui-applications-docker-mac/
