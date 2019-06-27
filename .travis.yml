@@ -18,3 +18,9 @@ jobs:
         cd cypress
 
         docker-compose --file docker-compose.yml run --rm cypress
+
+    - name: "Puppeteer"
+      script: |
+        cd puppeteer
+
+        docker-compose run --rm tests
