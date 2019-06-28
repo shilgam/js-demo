@@ -1,0 +1,23 @@
+version: '3'
+
+# run web application and puppeteer in headfull mode inside Docker containers
+# but send the X11 output to the server running on the host machine
+# so you can see and interact with the tests.
+# Most services are configured in the file docker-compose.yml.
+# This file only overrides variables necessary for visual to work with X11.
+# We need to use both file names to run:
+#
+#   docker-compose -f docker-compose.yml -f docker-compose-gui.yml run --rm tests
+#
+services:
+  tests:
+    volumes:
+      # - "./integration-tests:/integration-tests"
+      # - "./screenshots:/screenshots"
+      # allow connecting from Docker container to
+      # external XVFB server running on the host machine
+      # see https://sourabhbajaj.com/blog/2017/02/07/gui-applications-docker-mac/
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      - DISPLAY
+      - HEADLESS=0
