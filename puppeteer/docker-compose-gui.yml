@@ -12,10 +12,7 @@ version: '3'
 services:
   tests:
     volumes:
-      # - "./integration-tests:/integration-tests"
-      # - "./screenshots:/screenshots"
-      # allow connecting from Docker container to
-      # external XVFB server running on the host machine
+      # allow connecting from Docker container to external XVFB server running on the host
       # see https://sourabhbajaj.com/blog/2017/02/07/gui-applications-docker-mac/
       - /tmp/.X11-unix:/tmp/.X11-unix
     environment:

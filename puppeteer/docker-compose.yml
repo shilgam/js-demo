@@ -5,7 +5,6 @@ services:
     volumes:
       - "./integration-tests:/integration-tests"
       - "./screenshots:/screenshots"
-      - ./:/usr/src/app
     command: "wait-for-it.sh web:80 -- mocha --timeout 10000 --recursive /integration-tests"
     links:
       - web
