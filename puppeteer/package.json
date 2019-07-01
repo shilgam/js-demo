@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "mocha": "^6.1.4",
     "puppeteer": "1.16.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.18.0"
   }
 }
