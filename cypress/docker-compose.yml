@@ -9,13 +9,22 @@ services:
     build: ./app/
     environment:
       - PORT=8123
+
+  app:
+    build: ../app_demo/
+    ports:
+      - "8080:8080"
+    command: npm start
+
   cypress:
     # the Docker image to use from https://github.com/cypress-io/cypress-docker-images
     image: "cypress/included:3.2.0"
     depends_on:
+      - app
       - sentimentalyzer
+
     environment:
-      - CYPRESS_baseUrl=http://sentimentalyzer:8123
+      - CYPRESS_baseUrl=http://app:8080
     working_dir: /cypress
     volumes:
       - ./:/cypress
