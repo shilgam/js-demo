@@ -4,7 +4,7 @@ version: '3'
 # but send the X11 output to the server running on the host machine
 # so you can see and interact with the tests.
 # Most services are configured in the file docker-compose.yml.
-# This file only overrides variables necessary for visual to work with X11.
+# This file only overrides variables necessary for visual work with X11.
 # We need to use both file names to run:
 #
 #   docker-compose -f docker-compose.yml -f docker-compose-gui.yml run --rm tests

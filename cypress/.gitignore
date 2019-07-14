@@ -1,4 +1,5 @@
 # Cypress Artifacts
 cypress/screenshots/
 cypress/videos/
-cypress/fixtures/
+cypress/fixtures/profile.json
+cypress/fixtures/users.json
