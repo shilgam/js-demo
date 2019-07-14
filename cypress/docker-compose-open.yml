@@ -1,36 +1,22 @@
 version: '3.2'
 
-# run web application and open Cypress Test Runner in a Docker container
-# but send the X11 output to the server running on the host machine
-# so you can see and interact with the tests. Most services are configured
-# in the file docker-compose.yml, this file only overrides variables
-# necessary for "cypress open" to work with X11.
-# We need to use both file names to run:
+# run demo app and open Cypress Test Runner inside a Docker container,
+# and send the X11 output to the server running on the host machine to see and interact with the tests.
+# Most services are configured in the file docker-compose.yml
+# This file only overrides variables necessary for visual work with X11. To run:
 #
-#   docker-compose -f docker-compose.yml -f docker-compose-open.yml up --exit-code-from cypress
+#   docker-compose -f ../app/docker-compose.yml -f docker-compose.yml -f docker-compose-open.yml run --rm cypress
 #
 services:
   cypress:
-    # pass custom command to start Cypress otherwise it will use the entrypoint
-    # specified in the Cypress Docker image.
-    # also pass "--project <folder>" so that when Cypress opens
-    # it can find file "cypress.json" and show integration specs
-    # https://on.cypress.io/command-line#cypress-open
-    entrypoint: cypress open --project /cypress
     depends_on:
-      - sentimentalyzer
+      - app
     environment:
-      # pass environment variable DISPLAY if you need
-      # to show Cypress GUI on the host system
-      # typically you get the IP of the host system
-      # and set DISPLAY
-      #   IP=$(ipconfig getifaddr en0)
-      #   DISPLAY=$IP:0
-      # run docker-compose with
-      #   DISPLAY=$IP:0 docker-compose up --exit-code-from cypress
       - DISPLAY
     volumes:
       # allow connecting from Docker container to
       # external XVFB server running on the host machine
       # see https://sourabhbajaj.com/blog/2017/02/07/gui-applications-docker-mac/
       - /tmp/.X11-unix:/tmp/.X11-unix
+    entrypoint: ''
+    command: cypress open --project /cypress

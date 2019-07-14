@@ -1,30 +1,24 @@
 version: '3.2'
 
-# run Cypress tests and exit with command
+# run demo app and Cypress tests in headless mode:
 #
-#   docker-compose up --exit-code-from cypress
+#   docker-compose -f ../app/docker-compose.yml -f docker-compose.yml run --rm cypress
 #
 services:
-  sentimentalyzer:
-    build: ./app/
-    environment:
-      - PORT=8123
 
   app:
-    build: ../app_demo/
-    ports:
-      - "8080:8080"
-    command: npm start
+    # NOTE: see initial configs in ../app/docker-compose.yml
+    build: ../app/
 
   cypress:
-    # the Docker image to use from https://github.com/cypress-io/cypress-docker-images
+    # image from https://github.com/cypress-io/cypress-docker-images
     image: "cypress/included:3.2.0"
     depends_on:
       - app
-      - sentimentalyzer
-
+    volumes:
+      - ../cypress:/cypress
     environment:
       - CYPRESS_baseUrl=http://app:8080
     working_dir: /cypress
-    volumes:
-      - ./:/cypress
+    entrypoint: ''
+    command: cypress run --spec "cypress/integration/**"

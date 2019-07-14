@@ -13,24 +13,39 @@
 
 1. Run tests
 
-    1. in headless mode
+    * in headless mode
 
-            $ docker-compose --file docker-compose.yml run --rm cypress
+        1. launch tests
 
-    1. via Test Runner in interactive mode
+                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml run --rm cypress
+
+        1. clean up containers after tests
+
+                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml run --rm cypress
+
+    * in interactive mode
 
         1. Set up X11 server on the host machine, for example using [XQuartz](https://www.xquartz.org/) following the [Running GUI applications using Docker for Mac](https://sourabhbajaj.com/blog/2017/02/07/gui-applications-docker-mac/)
 
-        1. Set the `IP` variable and allow X11 server to accept incoming connections from that network address (see [docker-compose-open.yml](docker-compose-open.yml) for commands)
+                $ open -a XQuartz
+
+        1. Set the `IP` variable and allow X11 server to accept incoming connections from that network address
+
+                $ IP=$(ipconfig getifaddr en0)
+                $ xhost + $IP
 
         1. Set the `DISPLAY` variable and pass it to the `docker-compose`
 
-        1. Open Cypress in interactive mode
+                $ DISPLAY=$IP:0
 
-                $ docker-compose -f docker-compose.yml -f docker-compose-open.yml run --rm cypress
+        1. Open Cypress
+
+                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml -f docker-compose-open.yml run --rm cypress
             You should see Cypress open and be able to run tests, change files, see tests rerun.
 
+        1. Clean up containers after tests
 
+                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml -f docker-compose-open.yml down
 
 
 ## More information
