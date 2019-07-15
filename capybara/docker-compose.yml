@@ -1,19 +1,22 @@
-version: '3'
+version: '3.2'
 
 services:
+
   app:
-    build: .
+    # NOTE: service configured in the file ../app/docker-compose.yml
+
+  tests:
+    build: ../capybara/
     volumes:
-      - .:/usr/src/app
+      - ../capybara/:/usr/src/app/
     depends_on:
+      - app
       - chrome-debug
     environment:
       - SELENIUM_HOST=hub
       - SELENIUM_PORT=4444
-      - APP_HOST=http://acc-lci.ninthdecimal.com
+      - APP_HOST=http://app:8080
       - HEADLESS # should be set explicitly
-      - APP_USERNAME
-      - APP_PASSWORD
     entrypoint: ["./bin/test.sh"]
     command: rspec
 

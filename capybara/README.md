@@ -20,11 +20,19 @@ Demo: Capybara acceptance test framework with Selenium Webdriver
 
 1. Run test suite
 
-        ### in headful mode
-        $ docker-compose run --rm app
+    * **In headless mode**
 
-        ### in headless mode
-        $ HEADLESS=1 docker-compose run --rm app
+        1. Run tests
+
+                $ HEADLESS=1 docker-compose -f ../app/docker-compose.yml -f docker-compose.yml run --rm tests
+
+    * **In headful mode**
+
+        1. Run tests
+
+                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml run --rm tests
+
+        1. Create connection to VNC Server `localhost:5900` to visually see what the browser is doing
 
 1. Clean up containers after tests
 
@@ -32,5 +40,4 @@ Demo: Capybara acceptance test framework with Selenium Webdriver
 
 ## Notes
 
-- Selenium Grid URL: http://0.0.0.0:4444/
-- To visually see what the browser is doing you will need to create connection to VNC Server `localhost:5900`
+- Selenium Grid accessible via URL: http://0.0.0.0:4444/

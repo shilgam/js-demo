@@ -8,10 +8,7 @@ jobs:
       script: |
         cd capybara
 
-        HEADLESS=1 \
-          APP_USERNAME=$APP_USERNAME \
-          APP_PASSWORD=$APP_PASSWORD \
-          docker-compose run --rm app
+        HEADLESS=1 docker-compose -f ../app/docker-compose.yml -f docker-compose.yml run --rm tests
 
     - name: "Cypress"
       script: |
