@@ -27,6 +27,8 @@
 
         1. Set up X11 server on the host machine, for example using [XQuartz](https://www.xquartz.org/) following the [Running GUI applications using Docker for Mac](https://sourabhbajaj.com/blog/2017/02/07/gui-applications-docker-mac/)
 
+        1. Start XQuartz
+
                 $ open -a XQuartz
 
         1. Set the `IP` variable and allow X11 server to accept incoming connections from that network address
@@ -34,7 +36,7 @@
                 $ IP=$(ipconfig getifaddr en0)
                 $ xhost + $IP
 
-        1. Set the `DISPLAY` variable and pass it to the `docker-compose`
+        1. Instruct browser where to send their GUI output
 
                 $ DISPLAY=$IP:0
 

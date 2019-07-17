@@ -3,7 +3,7 @@
 ## Prerequisites
 
 1. Docker and docker-compose installed
-1. For Mac: [XQuartz](https://www.xquartz.org/) X11 server installed - to see chrome in headful mode ([instructions](https://sourabhbajaj.com/blog/2017/02/07/gui-applications-docker-mac/))
+1. [XQuartz](https://www.xquartz.org/) X11 server installed - to see chrome in headful mode
 
 ## Usage
 
@@ -11,29 +11,39 @@
 
 1. cd into `puppeteer` dir
 
-1. Run tests
+1. Run test suite
 
-    * in headless mode
+    * **In headless mode**
 
-            $ docker-compose run --rm tests
+        1. Run tests
 
-    * in interactive mode
+                $ docker-compose run --rm tests
+
+        1. Clean up containers after tests
+
+                $ docker-compose down
+
+    * **In interactive mode**
+
+        1. Set up X11 server on the host machine, for example using [XQuartz](https://www.xquartz.org/) following the [Running GUI applications using Docker for Mac](https://sourabhbajaj.com/blog/2017/02/07/gui-applications-docker-mac/)
 
         1. Start XQuartz
 
                 $ open -a XQuartz
 
-        1. Allow the Host Machine to access to an X server
+        1. Set the `IP` variable and allow X11 server to accept incoming connections from that network address
 
                 $ IP=$(ipconfig getifaddr en0)
                 $ xhost + $IP
 
+        1. Instruct browser where to send their GUI output
+
+                $ DISPLAY=$IP:0
 
         1. Run tests in headful chrome inside a container
 
-                $ DISPLAY=$IP:0  # to instruct browser where to send their GUI output
                 $ docker-compose -f docker-compose.yml -f docker-compose-gui.yml run --rm tests
 
-1. Clean up containers after tests
+        1. Clean up containers after tests
 
-        $ docker-compose down
+                $ docker-compose -f docker-compose.yml -f docker-compose-gui.yml down
