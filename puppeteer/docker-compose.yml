@@ -1,14 +1,15 @@
-version: '3'
+version: '3.2'
 services:
+  app:
+    # NOTE: service configured in the file ../app/docker-compose.yml
+
   tests:
-    build: .
+    build: ../puppeteer/
     volumes:
-      - "./integration-tests:/integration-tests"
-      - "./screenshots:/screenshots"
-    command: "wait-for-it.sh web:80 -- mocha --timeout 10000 --recursive /integration-tests"
-    links:
-      - web
-  web:
-    image: tutum/hello-world
-    expose:
-      - "80"
+      - "../puppeteer/integration-tests:/integration-tests"
+      - "../puppeteer/screenshots:/screenshots"
+    command: "wait-for-it.sh app:8080 -- mocha --timeout 10000 --recursive /integration-tests"
+    depends_on:
+      - app
+    environment:
+      - APP_URL=http://app:8080

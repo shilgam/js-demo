@@ -17,7 +17,7 @@
 
         1. Run tests
 
-                $ docker-compose run --rm tests
+                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml run --rm tests
 
         1. Clean up containers after tests
 
@@ -42,7 +42,7 @@
 
         1. Run tests in headful chrome inside a container
 
-                $ docker-compose -f docker-compose.yml -f docker-compose-gui.yml run --rm tests
+                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml -f docker-compose-gui.yml run --rm tests
 
         1. Clean up containers after tests
 

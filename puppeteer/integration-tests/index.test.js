@@ -51,7 +51,7 @@ after(async() => {
 
 describe('App', () => {
   it('renders', async() => {
-    const response = await page.goto('http://web/')
+    const response = await page.goto(process.env.APP_URL);
     assert(response.ok())
     await page.screenshot({ path: `/screenshots/app.png` })
 

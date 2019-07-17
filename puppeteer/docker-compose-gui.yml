@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 
 # run web application and puppeteer in headfull mode inside Docker containers
 # but send the X11 output to the server running on the host machine
@@ -16,5 +16,6 @@ services:
       # see https://sourabhbajaj.com/blog/2017/02/07/gui-applications-docker-mac/
       - /tmp/.X11-unix:/tmp/.X11-unix
     environment:
+      - APP_URL=http://app:8080
       - DISPLAY
       - HEADLESS=0

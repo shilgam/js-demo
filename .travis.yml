@@ -20,4 +20,4 @@ jobs:
       script: |
         cd puppeteer
 
-        docker-compose run --rm tests
+        docker-compose -f ../app/docker-compose.yml -f docker-compose.yml run --rm tests
