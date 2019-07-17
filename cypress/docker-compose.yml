@@ -2,15 +2,14 @@ version: '3.2'
 
 # run demo app and Cypress tests in headless mode:
 #
-#   docker-compose -f ../app/docker-compose.yml -f docker-compose.yml run --rm cypress
+#   docker-compose -f ../app/docker-compose.yml -f docker-compose.yml run --rm tests
 #
 services:
 
   app:
-    # NOTE: see initial configs in ../app/docker-compose.yml
-    build: ../app/
+    # NOTE: service configured in the file ../app/docker-compose.yml
 
-  cypress:
+  tests:
     # image from https://github.com/cypress-io/cypress-docker-images
     image: "cypress/included:3.2.0"
     depends_on:
