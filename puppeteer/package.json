@@ -1,7 +1,6 @@
 {
   "dependencies": {
-    "mocha": "^6.1.4",
-    "puppeteer": "1.16.0"
+    "mocha": "^6.1.4"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
