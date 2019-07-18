@@ -6,9 +6,11 @@ services:
   tests:
     build: ../puppeteer/
     volumes:
-      - "../puppeteer/integration-tests:/integration-tests"
-      - "../puppeteer/screenshots:/screenshots"
-    command: "wait-for-it.sh app:8080 -- mocha --timeout 10000 --recursive /integration-tests"
+      - ../puppeteer:/usr/src/app/
+      - ../puppeteer/screenshots/:/usr/src/app/screenshots/
+      # data vol to store node_modules
+      - /usr/src/app/node_modules
+    command: "wait-for-it.sh app:8080 -- mocha --timeout 10000 --recursive ./integration-tests"
     depends_on:
       - app
     environment:

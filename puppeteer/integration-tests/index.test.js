@@ -53,7 +53,7 @@ describe('App', () => {
   it('renders', async() => {
     const response = await page.goto(process.env.APP_URL);
     assert(response.ok())
-    await page.screenshot({ path: `/screenshots/app.png` })
+    await page.screenshot({ path: `./screenshots/app.png` })
 
     console.log('>>> before waiting');
     await delay(1000);
