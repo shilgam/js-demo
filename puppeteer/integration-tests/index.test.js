@@ -1,17 +1,12 @@
-const assert = require('assert')
-const puppeteer = require('puppeteer')
 
-let browser
-let page
+const assert = require('assert');
+const puppeteer = require('puppeteer');
 
-function delay(time) {
-   return new Promise(function(resolve) {
-       setTimeout(resolve, time)
-   });
-}
+let browser;
+let page;
 
-before(async() => {
-  let options
+beforeAll(async () => {
+  let options;
 
   options = {
     args: [
@@ -20,43 +15,48 @@ before(async() => {
       '--disable-setuid-sandbox',
       // This will write shared memory files into /tmp instead of /dev/shm,
       // because Docker’s default for /dev/shm is 64MB
-      '--disable-dev-shm-usage'
-    ]
-  }
+      '--disable-dev-shm-usage',
+    ],
+  };
 
   if (process.env.HEADLESS === '0') {
-      options = {...options, ...{
-          headless: false
-      }};
+    options = {
+      ...options,
+      ...{
+        headless: false,
+      },
+    };
   }
 
-  browser = await puppeteer.launch(options)
+  browser = await puppeteer.launch(options);
 
-  const browserVersion = await browser.version()
-  console.log(`Started ${browserVersion} with options:`)
-  console.log(options)
-})
+  const browserVersion = await browser.version();
+  console.log(`Started ${browserVersion} with options:`);
+  console.log(options);
+});
 
-beforeEach(async() => {
-  page = await browser.newPage()
-})
+afterAll(async () => {
+  await browser.close();
+});
 
-afterEach(async() => {
-  await page.close()
-})
+beforeEach(async () => {
+  page = await browser.newPage();
+});
 
-after(async() => {
-  await browser.close()
-})
+afterEach(async () => {
+  await page.close();
+});
 
-describe('App', () => {
-  it('renders', async() => {
-    const response = await page.goto(process.env.APP_URL);
-    assert(response.ok())
-    await page.screenshot({ path: `./screenshots/app.png` })
+function delay(time) {
+  return new Promise(((resolve) => {
+    setTimeout(resolve, time);
+  }));
+}
 
-    console.log('>>> before waiting');
-    await delay(1000);
-    console.log('<<< after waiting');
-  })
-})
+test('App renders', async () => {
+  const response = await page.goto(process.env.APP_URL);
+  assert(response.ok());
+  await page.screenshot({ path: './screenshots/app.png' });
+
+  await delay(1000);
+});
