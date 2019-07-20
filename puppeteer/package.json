@@ -1,5 +1,9 @@
 {
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
+    "jest": "^24.8.0",
     "mocha": "^6.1.4"
   },
   "devDependencies": {
