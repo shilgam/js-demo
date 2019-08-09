@@ -1,6 +1,5 @@
-
-const assert = require('assert');
-const puppeteer = require('puppeteer');
+import assert from 'assert';
+import puppeteer from 'puppeteer';
 
 let browser;
 let page;
