@@ -1,6 +1,8 @@
 import assert from 'assert';
 import puppeteer from 'puppeteer';
 
+import CommandsActionsPage from '../lib/commands.actions.page';
+
 let browser;
 let page;
 
@@ -52,10 +54,21 @@ function delay(time) {
   }));
 }
 
-test('App renders', async () => {
-  const response = await page.goto(process.env.APP_URL);
-  assert(response.ok());
-  await page.screenshot({ path: './screenshots/app.png' });
+describe('Suite', () => {
+  test('App renders', async () => {
+    const response = await page.goto(process.env.APP_URL);
+    assert(response.ok());
+    await page.screenshot({ path: './screenshots/app.png' });
 
-  await delay(1000);
+    // await delay(1000);
+  });
+
+  test('fill the form', async () => {
+    const response = await page.goto(`${process.env.APP_URL}/commands/actions`);
+    assert(response.ok());
+    const form = new CommandsActionsPage(page);
+    await form.fillEmailField('valid@email.com');
+
+    await delay(1000);
+  });
 });

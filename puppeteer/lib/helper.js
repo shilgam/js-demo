@@ -1,5 +1,3 @@
-module.exports = {
-  sayHello(name) {
-    return `Hello, ${name}!`;
-  },
-};
+const sayHello = name => `Hello, ${name}!`;
+
+export default sayHello;
