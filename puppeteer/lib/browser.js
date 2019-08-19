@@ -1,5 +1,7 @@
 import puppeteer from 'puppeteer'; // eslint-disable-line
 
+import config from 'config'
+
 export default class Browser {
   constructor() {
     this.driver = null;
@@ -21,11 +23,15 @@ export default class Browser {
       ],
     };
 
+    const puppeteerConfig = config.get('puppeteer');
+
+
     if (process.env.HEADLESS === '0') {
       this.options = {
         ...this.options,
         ...{
           headless: false,
+          slowMo: puppeteerConfig.slowMoTime, // slow down (in millisec)
         },
       };
     }

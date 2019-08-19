@@ -1,0 +1,9 @@
+{
+  // Customer module configs
+  "jest": {
+    "timeout": 10000
+  },
+  "puppeteer": {
+    "slowMoTime": 0, // slow down puppeteer (in millisec)
+  }
+}
