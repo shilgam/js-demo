@@ -4,7 +4,7 @@ import ActionsPage from '../lib/pages/commands/actions.page';
 import { delay } from '../lib/helper';
 
 let browser;
-let mypage;
+let basePage;
 
 beforeAll(async () => {
   browser = await new Browser().initialize();
@@ -15,24 +15,24 @@ afterAll(async () => {
 });
 
 beforeEach(async () => {
-  mypage = await browser.newPage();
+  basePage = await browser.newPage();
 });
 
 afterEach(async () => {
-  await mypage.close();
+  await basePage.close();
 });
 
 
 describe('Suite', () => {
   test('App renders', async () => {
-    const page = new ActionsPage(mypage);
+    const page = new ActionsPage(basePage);
     const response = await page.visit('/');
     assert(response.ok());
-    await mypage.screenshot({ path: './screenshots/app.png' });
+    await basePage.screenshot({ path: './screenshots/app.png' });
   });
 
   test('fill the form', async () => {
-    const page = new ActionsPage(mypage);
+    const page = new ActionsPage(basePage);
     const response = await page.visit('/commands/actions');
     assert(response.ok());
     await page.fillEmailField('valid@email.com');
