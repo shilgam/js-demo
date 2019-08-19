@@ -1,4 +1,4 @@
-class Page {
+export default class Page {
   constructor(page) {
     this.page = page;
   }
@@ -8,5 +8,3 @@ class Page {
     return response;
   }
 }
-
-export default Page;

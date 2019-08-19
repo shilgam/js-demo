@@ -1,6 +1,6 @@
-import Page from './page';
+import Page from '../page';
 
-class CommandsActionsPage extends Page {
+class ActionsPage extends Page {
   async fillEmailField(value) {
     const selector = '.action-email';
     await this.page.click(selector);
@@ -8,4 +8,4 @@ class CommandsActionsPage extends Page {
   }
 }
 
-export default CommandsActionsPage;
+export default ActionsPage;
