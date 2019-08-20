@@ -9,8 +9,6 @@ version: '3.2'
 #
 services:
   tests:
-    depends_on:
-      - app
     environment:
       - DISPLAY
     volumes:
@@ -18,5 +16,4 @@ services:
       # external XVFB server running on the host machine
       # see https://sourabhbajaj.com/blog/2017/02/07/gui-applications-docker-mac/
       - /tmp/.X11-unix:/tmp/.X11-unix
-    entrypoint: ''
     command: cypress open --project /cypress

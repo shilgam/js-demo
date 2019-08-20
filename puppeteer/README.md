@@ -3,6 +3,7 @@
 ## Prerequisites
 
 1. Docker and docker-compose installed
+
 1. [XQuartz](https://www.xquartz.org/) X11 server installed - to see chrome in headful mode
 
 ## Usage
@@ -10,6 +11,10 @@
 1. Clone the repo
 
 1. cd into `puppeteer` dir
+
+1. Download & build docker images
+
+        $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml build
 
 1. Run test suite
 
@@ -21,7 +26,7 @@
 
         1. Clean up containers after tests
 
-                $ docker-compose down
+                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml down
 
     * **In interactive mode**
 
@@ -46,4 +51,4 @@
 
         1. Clean up containers after tests
 
-                $ docker-compose -f docker-compose.yml -f docker-compose-gui.yml down
+                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml down

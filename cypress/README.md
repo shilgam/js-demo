@@ -3,6 +3,7 @@
 ## Prerequisites
 
 1. Docker and docker-compose installed
+
 1. [XQuartz](https://www.xquartz.org/) X11 server installed - to see Cypress in interactive mode
 
 ## Usage
@@ -11,19 +12,23 @@
 
 1. cd into `cypress` dir
 
-1. Run tests
+1. Download & build docker images
 
-    * in headless mode
+        $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml build
 
-        1. launch tests
+1. Run test suite
+
+    * **In headless mode**
+
+        1. Run tests
 
                 $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml run --rm tests
 
-        1. clean up containers after tests
+        1. Clean up containers after tests
 
                 $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml down
 
-    * in interactive mode
+    * **In interactive mode**
 
         1. Set up X11 server on the host machine, for example using [XQuartz](https://www.xquartz.org/) following the [Running GUI applications using Docker for Mac](https://sourabhbajaj.com/blog/2017/02/07/gui-applications-docker-mac/)
 
