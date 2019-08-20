@@ -1,0 +1,16 @@
+version: '3.2'
+
+# Most services are configured in the file docker-compose.yml
+# This file only overrides variables necessary for visual work in headful mode. To run:
+#
+#   docker-compose -f ../app/docker-compose.yml -f docker-compose.yml -f docker-compose-gui.yml run --rm tests
+#
+services:
+  tests:
+    environment:
+      - HEADLESS
+
+  chrome:
+    image: selenium/node-chrome-debug:3.14.0-gallium
+    ports:
+      - "5900:5900"

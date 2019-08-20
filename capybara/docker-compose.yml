@@ -11,23 +11,21 @@ services:
       - ../capybara/:/usr/src/app/
     depends_on:
       - app
-      - chrome-debug
+      - chrome
     environment:
       - SELENIUM_HOST=hub
       - SELENIUM_PORT=4444
       - APP_HOST=http://app:8080
-      - HEADLESS # should be set explicitly
+      - HEADLESS=1
     entrypoint: ["./bin/test.sh"]
     command: rspec
 
-  chrome-debug:
-    image: selenium/node-chrome-debug:3.14.0-gallium
+  chrome:
+    image: selenium/node-chrome:3.14.0-gallium
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
       - hub
-    ports:
-      - "5900:5900"
     environment:
       HUB_HOST: hub
       VNC_NO_PASSWORD: 1

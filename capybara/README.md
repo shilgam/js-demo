@@ -16,7 +16,7 @@ Demo: Capybara acceptance test framework with Selenium Webdriver
 
 1. Download & build docker images
 
-        $ docker-compose build
+        $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml build
 
 1. Run test suite
 
@@ -24,19 +24,23 @@ Demo: Capybara acceptance test framework with Selenium Webdriver
 
         1. Run tests
 
-                $ HEADLESS=1 docker-compose -f ../app/docker-compose.yml -f docker-compose.yml run --rm tests
+                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml run --rm tests
 
-    * **In headful mode**
+        1. Clean up containers after tests
+
+                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml down
+
+    * **In interactive mode**
 
         1. Run tests
 
-                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml run --rm tests
+                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml -f docker-compose-gui.yml run --rm tests
 
         1. Create connection to VNC Server `localhost:5900` to visually see what the browser is doing
 
-1. Clean up containers after tests
+        1. Clean up containers after tests
 
-        $ docker-compose down
+                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml down
 
 ## Notes
 
