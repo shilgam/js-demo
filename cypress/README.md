@@ -17,11 +17,11 @@
 
         1. launch tests
 
-                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml run --rm cypress
+                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml run --rm tests
 
         1. clean up containers after tests
 
-                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml run --rm cypress
+                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml down
 
     * in interactive mode
 
@@ -42,12 +42,12 @@
 
         1. Open Cypress
 
-                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml -f docker-compose-open.yml run --rm cypress
+                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml -f docker-compose-gui.yml run --rm tests
             You should see Cypress open and be able to run tests, change files, see tests rerun.
 
         1. Clean up containers after tests
 
-                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml -f docker-compose-open.yml down
+                $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml down
 
 
 ## More information

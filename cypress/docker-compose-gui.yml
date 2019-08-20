@@ -5,7 +5,7 @@ version: '3.2'
 # Most services are configured in the file docker-compose.yml
 # This file only overrides variables necessary for visual work with X11. To run:
 #
-#   docker-compose -f ../app/docker-compose.yml -f docker-compose.yml -f docker-compose-open.yml run --rm tests
+#   docker-compose -f ../app/docker-compose.yml -f docker-compose.yml -f docker-compose-gui.yml run --rm tests
 #
 services:
   tests:
