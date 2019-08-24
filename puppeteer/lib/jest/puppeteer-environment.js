@@ -1,7 +1,7 @@
 // custom environment
-const NodeEnvironment = require('jest-environment-node');
+import NodeEnvironment from 'jest-environment-node';
 
-class PuppeteerEnvironment extends NodeEnvironment {
+export default class PuppeteerEnvironment extends NodeEnvironment {
   async setup() {
     console.log('>>>>>> setup');
     await super.setup();
@@ -16,5 +16,3 @@ class PuppeteerEnvironment extends NodeEnvironment {
     return super.runScript(script);
   }
 }
-
-module.exports = PuppeteerEnvironment;

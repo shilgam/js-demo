@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "npx jest"
+    "test": "node -r esm ./node_modules/.bin/jest"
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.5.5",
