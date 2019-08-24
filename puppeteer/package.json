@@ -11,6 +11,7 @@
     "esm": "^3.2.25",
     "jest": "^24.8.0",
     "jest-environment-node": "^24.9.0",
+    "mkdirp": "^0.5.1",
     "mocha": "^6.1.4"
   },
   "devDependencies": {

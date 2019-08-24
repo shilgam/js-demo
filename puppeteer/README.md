@@ -52,3 +52,7 @@
         1. Clean up containers after tests
 
                 $ docker-compose -f ../app/docker-compose.yml -f docker-compose.yml down
+
+ADDITIONAL INFO:
+
+* official guide for using Jest with Puppeteer: https://jestjs.io/docs/en/puppeteer
