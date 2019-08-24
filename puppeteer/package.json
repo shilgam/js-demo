@@ -12,7 +12,8 @@
     "jest": "^24.8.0",
     "jest-environment-node": "^24.9.0",
     "mkdirp": "^0.5.1",
-    "mocha": "^6.1.4"
+    "mocha": "^6.1.4",
+    "rimraf": "^3.0.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
