@@ -1,24 +1,11 @@
 import assert from 'assert';
-import Browser from '../lib/browser';
 import ActionsPage from '../lib/pages/commands/actions.page';
 import { delay } from '../lib/helper';
 
-let browser;
 let basePage;
 
-beforeAll(async () => {
-  browser = await new Browser().initialize();
-  console.log('>>>>>> beforeAll');
-});
-
-
-afterAll(async () => {
-  await browser.tearDown();
-  console.log('<<<<<< afterAll');
-});
-
 beforeEach(async () => {
-  basePage = await browser.newPage();
+  basePage = await global.__BROWSER__.newPage();
 });
 
 afterEach(async () => {

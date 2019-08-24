@@ -13,3 +13,5 @@ parserOptions:
   sourceType: module
 plugins:
   - jest
+rules:
+  no-underscore-dangle: off
