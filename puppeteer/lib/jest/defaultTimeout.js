@@ -1,6 +1,6 @@
 /* global jest */
 
-const config = require('config');
+import config from 'config';
 
 const jestConfig = config.get('jest');
 

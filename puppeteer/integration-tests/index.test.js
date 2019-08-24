@@ -8,10 +8,13 @@ let basePage;
 
 beforeAll(async () => {
   browser = await new Browser().initialize();
+  console.log('>>>>>> beforeAll');
 });
+
 
 afterAll(async () => {
   await browser.tearDown();
+  console.log('<<<<<< afterAll');
 });
 
 beforeEach(async () => {
@@ -30,6 +33,7 @@ describe('Suite', () => {
     assert(response.ok());
     await basePage.screenshot({ path: './screenshots/app.png' });
   });
+
 
   test('fill the form', async () => {
     const page = new ActionsPage(basePage);
