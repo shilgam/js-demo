@@ -4,7 +4,7 @@ const { createTmpDirPath, createTmpDir, writeToFile } = require('../helper/files
 
 async function setup() {
   console.log('\n>>>>>>> Setup puppeteer'); // eslint-disable-line
-  const options = {
+  let options = {
     args: [
       // Required for Docker version of Puppeteer
       '--no-sandbox',
@@ -18,8 +18,8 @@ async function setup() {
   const puppeteerConfig = config.get('puppeteer');
 
   if (process.env.HEADLESS === '0') {
-    this.options = {
-      ...this.options,
+    options = {
+      ...options,
       ...{
         headless: false,
         slowMo: puppeteerConfig.slowMoTime, // slow down (in millisec)
