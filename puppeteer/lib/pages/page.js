@@ -1,10 +1,25 @@
 export default class Page {
-  constructor(page) {
-    this.page = page;
+  constructor() {
+    this.browser = global.__BROWSER__;
+    this.page = null;
   }
 
-  async visit(path) {
-    const response = await this.page.goto(`${process.env.APP_URL}${path}`);
-    return response;
+  async open(path) {
+    const page = await this.browser.newPage();
+    await page.goto(`${process.env.APP_URL}${path}`);
+    this.page = page;
+    return this;
+  }
+
+  async close() {
+    return this.page.close();
+  }
+
+  async title() {
+    return this.page.title();
+  }
+
+  async screenshot(options) {
+    await this.page.screenshot(options);
   }
 }

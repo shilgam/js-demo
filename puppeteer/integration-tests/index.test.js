@@ -1,33 +1,24 @@
-import assert from 'assert';
 import ActionsPage from '../lib/pages/commands/actions.page';
 import { delay } from '../lib/helper';
 
-let basePage;
 
-beforeEach(async () => {
-  basePage = await global.__BROWSER__.newPage();
-});
+describe('Test suite', () => {
+  test('Create screenshot of the page', async () => {
+    let page = new ActionsPage();
+    page = await page.open();
 
-afterEach(async () => {
-  await basePage.close();
-});
-
-
-describe('Suite', () => {
-  test('App renders', async () => {
-    const page = new ActionsPage(basePage);
-    const response = await page.visit('/');
-    assert(response.ok());
-    await basePage.screenshot({ path: './screenshots/app.png' });
+    await page.screenshot({ path: './screenshots/app.png' });
+    expect(await page.title()).toEqual('Cypress.io: Kitchen Sink');
+    await page.close();
   });
 
-
   test('fill the form', async () => {
-    const page = new ActionsPage(basePage);
-    const response = await page.visit('/commands/actions');
-    assert(response.ok());
-    await page.fillEmailField('valid@email.com');
+    let page = new ActionsPage();
+    page = await page.open();
 
-    await delay(200);
+    await page.fillEmailField('valid@email.com');
+    await delay(300);
+    expect(1).toEqual(1);
+    await page.close();
   });
 });
