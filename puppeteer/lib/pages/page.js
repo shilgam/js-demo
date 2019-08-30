@@ -22,4 +22,9 @@ export default class Page {
   async screenshot(options) {
     await this.page.screenshot(options);
   }
+
+  async fillField(selector, value) {
+    await this.page.focus(selector);
+    await this.page.type(selector, value);
+  }
 }

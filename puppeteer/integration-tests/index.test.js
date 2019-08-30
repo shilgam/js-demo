@@ -1,6 +1,4 @@
 import ActionsPage from '../lib/pages/commands/actions.page';
-import { delay } from '../lib/helper';
-
 
 describe('Test suite', () => {
   test('Create screenshot of the page', async () => {
@@ -17,8 +15,10 @@ describe('Test suite', () => {
     page = await page.open();
 
     await page.fillEmailField('valid@email.com');
-    await delay(300);
-    expect(1).toEqual(1);
+    await page.fillPasswordField('mySecretPassword');
+    await page.clickSubmitBtn();
+    const alertHtml = await page.getAlertMsg();
+    expect(alertHtml).toEqual(expect.stringContaining('Your form has been submitted!'));
     await page.close();
   });
 });
