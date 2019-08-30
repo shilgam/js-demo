@@ -23,6 +23,7 @@ async function setup() {
       ...{
         headless: false,
         slowMo: puppeteerConfig.slowMoTime, // slow down (in millisec)
+        // devtools: true, // required for debugger
       },
     };
   }

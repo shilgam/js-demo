@@ -27,4 +27,10 @@ export default class Page {
     await this.page.focus(selector);
     await this.page.type(selector, value);
   }
+
+  async debugger() {
+    await this.page.evaluate(() => {
+      debugger;
+    });
+  }
 }
