@@ -1,4 +1,5 @@
 import ActionsPage from '../lib/pages/commands/actions.page';
+import Header from '../lib/pages/header';
 
 describe('Test suite', () => {
   test('Create screenshot of the page', async () => {
@@ -19,6 +20,14 @@ describe('Test suite', () => {
     await page.clickSubmitBtn();
     const alertHtml = await page.getAlertMsg();
     expect(alertHtml).toEqual(expect.stringContaining('Your form has been submitted!'));
+    await page.close();
+
+    page = new Header();
+    page = await page.open();
+
+    await page.navigateToUtilitiesPage();
+    await page.screenshot({ path: './screenshots/utilitiesPage.png' });
+
     await page.close();
   });
 });
