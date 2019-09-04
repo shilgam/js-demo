@@ -1,13 +1,19 @@
+import Header from './forms/header';
+
 export default class Page {
   constructor() {
     this.browser = global.__BROWSER__;
     this.page = null;
+    this.header = null;
+  }
+
+  async init() {
+    this.page = await this.browser.newPage();
+    this.header = new Header(this.page);
   }
 
   async open(path) {
-    const page = await this.browser.newPage();
-    await page.goto(`${process.env.APP_URL}${path}`);
-    this.page = page;
+    await this.page.goto(`${process.env.APP_URL}${path}`);
     return this;
   }
 
@@ -30,7 +36,7 @@ export default class Page {
 
   async debugger() {
     await this.page.evaluate(() => {
-      debugger;
+      debugger; // eslint-disable-line
     });
   }
 }
