@@ -1,5 +1,5 @@
 import Page from './page';
-import Header from './forms/header';
+import Header from './components/header';
 
 class ActionsPage extends Page {
   constructor() {
