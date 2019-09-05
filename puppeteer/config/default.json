@@ -1,7 +1,7 @@
 {
   // Customer module configs
   "jest": {
-    "timeout": 10000 // bumb to use debugger
+    "timeout": 10000 // bump to use debugger
   },
   "puppeteer": {
     "slowMoTime": 0, // slow down puppeteer (in millisec)

@@ -1,7 +1,7 @@
 export default class Page {
-  constructor() {
+  constructor(page = null) {
     this.browser = global.__BROWSER__;
-    this.page = null;
+    this.page = page;
   }
 
   async init() {

@@ -2,8 +2,8 @@ import Page from './page';
 import Header from './components/header';
 
 class ActionsPage extends Page {
-  constructor() {
-    super();
+  constructor(page = null) {
+    super(page);
     this.header = null;
   }
 

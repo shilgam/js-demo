@@ -1,3 +1,5 @@
+import QueryingPage from '../querying.page';
+
 class Header {
   constructor(page) {
     this.page = page;
@@ -8,7 +10,8 @@ class Header {
     await this.page.click(commandsDropdown);
     const queryingListItem = '.navbar [href="/commands/querying"]';
     await this.page.click(queryingListItem);
-    return this;
+    this.page = new QueryingPage(this.page);
+    return this.page;
   }
 }
 

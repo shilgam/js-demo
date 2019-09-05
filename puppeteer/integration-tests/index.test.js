@@ -29,10 +29,13 @@ describe('Test suite', () => {
     await page.init();
     await page.open();
 
-    await page.header.navigateToQueryingPage();
+    const queryingPage = await page.header.navigateToQueryingPage();
+    queryingPage.greeting();
+
     const selector = 'body h1';
-    const pageHeader = await page.getInnerText(selector);
-    expect(pageHeader).toEqual('Querying');
-    await page.close();
+    const headerText = await page.getInnerText(selector);
+    expect(headerText).toEqual('Querying');
+
+    await queryingPage.close();
   });
 });
