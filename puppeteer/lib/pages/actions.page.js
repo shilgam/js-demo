@@ -1,6 +1,17 @@
 import Page from './page';
+import Header from './forms/header';
 
 class ActionsPage extends Page {
+  constructor() {
+    super();
+    this.header = null;
+  }
+
+  async init() {
+    await super.init();
+    this.header = new Header(this.page);
+  }
+
   async open() {
     return super.open('/commands/actions');
   }
