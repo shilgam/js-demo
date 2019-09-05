@@ -3,9 +3,11 @@ class Header {
     this.page = page;
   }
 
-  async navigateToUtilitiesPage() {
-    const selector = '.navbar [href="/utilities"]';
-    await this.page.click(selector);
+  async navigateToQueryingPage() {
+    const commandsDropdown = '.navbar .dropdown-toggle';
+    await this.page.click(commandsDropdown);
+    const queryingListItem = '.navbar [href="/commands/querying"]';
+    await this.page.click(queryingListItem);
     return this;
   }
 }

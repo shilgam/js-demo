@@ -21,9 +21,18 @@ describe('Test suite', () => {
     await page.clickSubmitBtn();
     const alertHtml = await page.getAlertMsg();
     expect(alertHtml).toEqual(expect.stringContaining('Your form has been submitted!'));
+    await page.close();
+  });
 
-    await page.header.navigateToUtilitiesPage();
-    await page.header.page.screenshot({ path: './screenshots/utilitiesPage.png' });
+  test('navigate between pages', async () => {
+    const page = new ActionsPage();
+    await page.init();
+    await page.open();
+
+    await page.header.navigateToQueryingPage();
+    const selector = 'body h1';
+    const pageHeader = await page.getInnerText(selector);
+    expect(pageHeader).toEqual('Querying');
     await page.close();
   });
 });

@@ -29,6 +29,10 @@ export default class Page {
     await this.page.screenshot(options);
   }
 
+  async getInnerText(selector) {
+    return this.page.$eval(selector, e => e.innerText);
+  }
+
   async fillField(selector, value) {
     await this.page.focus(selector);
     await this.page.type(selector, value);
