@@ -1,3 +1,5 @@
+require('./initDotEnv.js');
+
 const puppeteer = require('puppeteer'); // eslint-disable-line
 const config = require('config');
 const { createTmpDirPath, createTmpDir, writeToFile } = require('../helper/filesystem.js');
