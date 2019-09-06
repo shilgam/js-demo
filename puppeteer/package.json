@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@types/config": "0.0.34",
+    "@types/dotenv": "^6.1.1",
     "@types/mkdirp": "^0.5.2",
     "@types/rimraf": "^2.0.2",
     "eslint": "^5.16.0",
