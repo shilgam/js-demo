@@ -15,3 +15,4 @@ plugins:
   - jest
 rules:
   no-underscore-dangle: off
+  no-console: ["error", { allow: ["info", "warn", "error"] }]
