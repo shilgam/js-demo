@@ -5,5 +5,8 @@
   },
   "puppeteer": {
     "slowMoTime": 0, // slow down puppeteer (in millisec)
+  },
+  "app": {
+    "APP_URL": "http://app:8080"
   }
 }

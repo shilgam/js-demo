@@ -1,3 +1,5 @@
+import appConfig from './appConfig';
+
 export default class Page {
   constructor(page = null) {
     this.browser = global.__BROWSER__;
@@ -9,7 +11,7 @@ export default class Page {
   }
 
   async open(path) {
-    await this.page.goto(`${process.env.APP_URL}${path}`);
+    await this.page.goto(`${appConfig.APP_URL}${path}`);
     return this;
   }
 
