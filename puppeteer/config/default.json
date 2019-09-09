@@ -1,10 +1,10 @@
 {
   // Customer module configs
   "jest": {
-    "timeout": 10000 // bump to use debugger
+    "JEST_TIMEOUT": 10000 // bump to use debugger
   },
   "puppeteer": {
-    "slowMoTime": 0, // slow down puppeteer (in millisec)
+    "SLOW_MO_TIME": 0, // slow down puppeteer (in millisec)
   },
   "app": {
     "APP_URL": "http://app:8080"

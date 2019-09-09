@@ -22,7 +22,7 @@ async function initBrowser() {
       ...options,
       ...{
         headless: false,
-        slowMo: puppeteerConfig.slowMoTime, // slow down (in millisec)
+        slowMo: puppeteerConfig.SLOW_MO_TIME, // slow down (in millisec)
         // devtools: true, // required for debugger
       },
     };
