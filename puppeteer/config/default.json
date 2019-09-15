@@ -7,6 +7,6 @@
     "SLOW_MO_TIME": 0, // slow down puppeteer (in millisec)
   },
   "app": {
-    "APP_URL": "http://app:8080"
+    "APP_URL": "http://acc-lci.ninthdecimal.com"
   }
 }
