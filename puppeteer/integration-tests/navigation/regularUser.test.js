@@ -1,21 +1,35 @@
 import LoginPage from '../../lib/pages/login.page';
+import CampDetailsPage from '../../lib/pages/campDetails.page';
 
-describe('Test suite', () => {
-  test('Create screenshot of the page', async () => {
+
+describe('Navigation', () => {
+  test('Index Page', async () => {
     const page = new LoginPage();
     await page.init();
     await page.open();
 
-    await page.screenshot({ path: './screenshots/dash.png' });
-
-    // index page
     const indexPage = await page.login();
-    const listSelector = '.teams.list-view';
-    const listNode = await indexPage.page.waitForSelector(listSelector);
-    expect(listNode).not.toBeNull();
+    const campListSelector = '.teams.list-view';
+    const campListNode = await indexPage.waitForSelector(campListSelector);
+    expect(campListNode).not.toBeNull();
 
-    indexPage.greeting();
+    await page.close();
+  });
 
+  test('Search Page', async () => {
+    const page = new LoginPage();
+    await page.init();
+    await page.open();
+
+    // await page.login();
+    const campDetailsPage = new CampDetailsPage();
+    await campDetailsPage.init();
+    await campDetailsPage.open();
+
+    const pageTitle = await campDetailsPage.getInnerText('.nd-content h1');
+    expect(pageTitle).toEqual('Search');
+
+    await campDetailsPage.close();
     await page.close();
   });
 });

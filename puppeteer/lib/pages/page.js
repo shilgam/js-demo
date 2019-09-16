@@ -40,4 +40,8 @@ export default class Page {
       debugger; // eslint-disable-line
     });
   }
+
+  async waitForSelector(selector) {
+    return this.page.waitForSelector(selector);
+  }
 }

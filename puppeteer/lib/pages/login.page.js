@@ -1,5 +1,5 @@
 import Page from './page';
-import IndexPage from './index.page';
+import CampIndexPage from './campIndex.page';
 
 class LoginPage extends Page {
   constructor(page = null) {
@@ -25,7 +25,7 @@ class LoginPage extends Page {
     if (button) button.click();
     await this.page.waitForNavigation();
 
-    this.page = new IndexPage(this.page);
+    this.page = new CampIndexPage(this.page);
     return this.page;
   }
 
