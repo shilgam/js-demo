@@ -1,5 +1,6 @@
 import LoginPage from '../../lib/pages/login.page';
 import CampDetailsPage from '../../lib/pages/campDetails.page';
+import SearchPage from '../../lib/pages/search.page';
 
 
 describe('Navigation', () => {
@@ -16,20 +17,26 @@ describe('Navigation', () => {
     await page.close();
   });
 
+  test('Campaign Details Page', async () => {
+    const page = new CampDetailsPage();
+    await page.init();
+    await page.open(1001);
+
+    const selector = '.lci-graphs';
+    const chartsNode = await page.waitForSelector(selector);
+    expect(chartsNode).not.toBeNull();
+
+    await page.close();
+  });
+
   test('Search Page', async () => {
-    const page = new LoginPage();
+    const page = new SearchPage();
     await page.init();
     await page.open();
 
-    // await page.login();
-    const campDetailsPage = new CampDetailsPage();
-    await campDetailsPage.init();
-    await campDetailsPage.open();
-
-    const pageTitle = await campDetailsPage.getInnerText('.nd-content h1');
+    const pageTitle = await page.getInnerText('.nd-content h1');
     expect(pageTitle).toEqual('Search');
 
-    await campDetailsPage.close();
     await page.close();
   });
 });

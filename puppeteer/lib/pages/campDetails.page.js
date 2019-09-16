@@ -1,8 +1,8 @@
 import Page from './page';
 
 class CampDetailsPage extends Page {
-  async open() {
-    return super.open('/search');
+  async open(campaignId) {
+    return super.open(`/campaigns/${campaignId}`);
   }
 }
 
