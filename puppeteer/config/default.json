@@ -1,7 +1,7 @@
 {
   // Customer module configs
   "jest": {
-    "JEST_TIMEOUT": 10000 // bump to use debugger
+    "JEST_TIMEOUT": 20000 // bump to use debugger
   },
   "puppeteer": {
     "SLOW_MO_TIME": 0, // slow down puppeteer (in millisec)

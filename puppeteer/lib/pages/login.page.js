@@ -28,6 +28,12 @@ class LoginPage extends Page {
     this.page = new IndexPage(this.page);
     return this.page;
   }
+
+  async login() {
+    await this.fillEmailField(process.env.USERNAME_ADMIN);
+    await this.fillPasswordField(process.env.PASSWORD_ADMIN);
+    return this.clickSubmitBtn();
+  }
 }
 
 export default LoginPage;
