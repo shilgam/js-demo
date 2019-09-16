@@ -13,3 +13,6 @@ services:
     command: "wait-for-it.sh app:8080 -- npm test integration-tests/"
     depends_on:
       - app
+    environment:
+      - USERNAME_ADMIN
+      - PASSWORD_ADMIN
