@@ -16,3 +16,5 @@ services:
     environment:
       - USERNAME_ADMIN
       - PASSWORD_ADMIN
+      - USERNAME_REGULAR
+      - PASSWORD_REGULAR
