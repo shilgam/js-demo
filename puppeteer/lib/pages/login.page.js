@@ -29,9 +29,9 @@ class LoginPage extends Page {
     return this.page;
   }
 
-  async login() {
-    await this.fillEmailField(process.env.USERNAME_ADMIN);
-    await this.fillPasswordField(process.env.PASSWORD_ADMIN);
+  async login(username, password) {
+    await this.fillEmailField(username);
+    await this.fillPasswordField(password);
     return this.clickSubmitBtn();
   }
 }
