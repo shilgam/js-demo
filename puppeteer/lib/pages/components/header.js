@@ -1,17 +1,14 @@
-import QueryingPage from '../querying.page';
-
 class Header {
   constructor(page) {
     this.page = page;
   }
 
-  async navigateToQueryingPage() {
-    const commandsDropdown = '.navbar .dropdown-toggle';
-    await this.page.click(commandsDropdown);
-    const queryingListItem = '.navbar [href="/commands/querying"]';
-    await this.page.click(queryingListItem);
-    this.page = new QueryingPage(this.page);
-    return this.page;
+  async logout() {
+    const selector = '.dropdown-toggle';
+    await this.page.click(selector);
+    const logoutListItemSelector = '.dropdown-menu [href="/users/sign_out"]';
+    await this.page.click(logoutListItemSelector);
+    return this.page.waitForSelector('.form-signin');
   }
 }
 

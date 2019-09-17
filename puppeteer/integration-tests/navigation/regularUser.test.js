@@ -10,12 +10,12 @@ import CustomReportPage from '../../lib/pages/customReport.page';
 
 
 describe('As regular user I can view', () => {
-  test('IndexPage', async () => {
+  test('Index Page', async () => {
     const page = new LoginPage();
     await page.init();
     await page.open();
+    const indexPage = await page.login(process.env.USERNAME_REGULAR, process.env.PASSWORD_REGULAR);
 
-    const indexPage = await page.login(process.env.USERNAME_ADMIN, process.env.PASSWORD_ADMIN);
     const campListSelector = '.teams.list-view';
     const campListNode = await indexPage.waitForSelector(campListSelector);
     expect(campListNode).not.toBeNull();
@@ -23,7 +23,7 @@ describe('As regular user I can view', () => {
     await page.close();
   });
 
-  test('CampaignDetails Page', async () => {
+  test('Campaign Details Page', async () => {
     const page = new CampDetailsPage();
     await page.init();
     await page.open(1001);
@@ -46,7 +46,7 @@ describe('As regular user I can view', () => {
     await page.close();
   });
 
-  test('ChangePassword Page', async () => {
+  test('Change Password Page', async () => {
     const page = new ChangePasswordPage();
     await page.init();
     await page.open();
@@ -54,24 +54,32 @@ describe('As regular user I can view', () => {
     const pageTitle = await page.getInnerText('.nd-content h1');
     expect(pageTitle).toMatch('Change Password');
 
+    await page.header.logout();
+
     await page.close();
   });
 });
 
 describe('As admin user I can also view', () => {
-  test('DataApprovals page', async () => {
-    const page = new DataApprovalsPage();
+  test('Data Approvals page', async () => {
+    const page = new LoginPage();
     await page.init();
     await page.open();
+    await page.login(process.env.USERNAME_ADMIN, process.env.PASSWORD_ADMIN);
+
+    const aprrovalsPage = new DataApprovalsPage();
+    await aprrovalsPage.init();
+    await aprrovalsPage.open();
 
     const selector = '.approval-table';
-    const chartsNode = await page.waitForSelector(selector);
+    const chartsNode = await aprrovalsPage.waitForSelector(selector);
     expect(chartsNode).not.toBeNull();
 
     await page.close();
+    await aprrovalsPage.close();
   });
 
-  test('CustomReportUpload page', async () => {
+  test('Custom Report Upload page', async () => {
     const page = new CustomReportUploadPage();
     await page.init();
     await page.open();
@@ -95,7 +103,7 @@ describe('As admin user I can also view', () => {
     await page.close();
   });
 
-  test('ManageAlerts page', async () => {
+  test('Manage Alerts page', async () => {
     const page = new ManageAlertsPage();
     await page.init();
     await page.open();

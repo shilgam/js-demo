@@ -1,13 +1,16 @@
 import appConfig from '../appConfig';
+import Header from './components/header';
 
 export default class Page {
   constructor(page = null) {
     this.browser = global.__BROWSER__;
     this.page = page;
+    this.header = null;
   }
 
   async init() {
     this.page = await this.browser.newPage();
+    this.header = new Header(this.page);
   }
 
   async open(path) {
