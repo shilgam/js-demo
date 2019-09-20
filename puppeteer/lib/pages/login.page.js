@@ -19,10 +19,7 @@ class LoginPage extends Page {
   }
 
   async clickSubmitBtn() {
-    const xpath = '//button[contains(text(), "LOG IN")]';
-    await this.page.waitForXPath(xpath, 5000);
-    const [button] = await this.page.$x(xpath);
-    if (button) button.click();
+    await expect(this.page).toClick('button', { text: 'LOG IN' });
     await this.page.waitForNavigation();
 
     this.page = new CampIndexPage(this.page);

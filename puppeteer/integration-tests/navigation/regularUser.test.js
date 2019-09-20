@@ -17,8 +17,7 @@ describe('As regular user I can view', () => {
     const indexPage = await page.login(process.env.USERNAME_REGULAR, process.env.PASSWORD_REGULAR);
 
     const campListSelector = '.teams.list-view';
-    const campListNode = await indexPage.waitForSelector(campListSelector);
-    expect(campListNode).not.toBeNull();
+    await expect(indexPage.page).toMatchElement(campListSelector);
 
     await page.close();
   });
@@ -29,8 +28,7 @@ describe('As regular user I can view', () => {
     await page.open(1001);
 
     const selector = '.lci-graphs';
-    const chartsNode = await page.waitForSelector(selector);
-    expect(chartsNode).not.toBeNull();
+    await expect(page.page).toMatchElement(selector);
 
     await page.close();
   });
@@ -40,8 +38,8 @@ describe('As regular user I can view', () => {
     await page.init();
     await page.open();
 
-    const pageTitle = await page.getInnerText('.nd-content h1');
-    expect(pageTitle).toEqual('Search');
+    const selector = '.nd-content h1';
+    await expect(page.page).toMatchElement(selector, { text: 'Search' });
 
     await page.close();
   });
@@ -51,14 +49,15 @@ describe('As regular user I can view', () => {
     await page.init();
     await page.open();
 
-    const pageTitle = await page.getInnerText('.nd-content h1');
-    expect(pageTitle).toMatch('Change Password');
+    const selector = '.nd-content h1';
+    await expect(page.page).toMatchElement(selector, { text: 'Change Password' });
 
     await page.header.logout();
 
     await page.close();
   });
 });
+
 
 describe('As admin user I can also view', () => {
   test('Data Approvals page', async () => {
@@ -72,8 +71,7 @@ describe('As admin user I can also view', () => {
     await aprrovalsPage.open();
 
     const selector = '.approval-table';
-    const chartsNode = await aprrovalsPage.waitForSelector(selector);
-    expect(chartsNode).not.toBeNull();
+    await expect(aprrovalsPage.page).toMatchElement(selector);
 
     await page.close();
     await aprrovalsPage.close();
@@ -85,8 +83,7 @@ describe('As admin user I can also view', () => {
     await page.open();
 
     const selector = '.upload-form';
-    const chartsNode = await page.waitForSelector(selector);
-    expect(chartsNode).not.toBeNull();
+    await expect(page.page).toMatchElement(selector);
 
     await page.close();
   });
@@ -97,8 +94,7 @@ describe('As admin user I can also view', () => {
     await page.open();
 
     const selector = '#users-table';
-    const node = await page.waitForSelector(selector);
-    expect(node).not.toBeNull();
+    await expect(page.page).toMatchElement(selector);
 
     await page.close();
   });
@@ -108,8 +104,8 @@ describe('As admin user I can also view', () => {
     await page.init();
     await page.open();
 
-    const pageTitle = await page.getInnerText('.nd-content h1');
-    expect(pageTitle).toEqual('Alerts');
+    const selector = '.nd-content h1';
+    await expect(page.page).toMatchElement(selector, { text: 'Alerts' });
 
     await page.close();
   });
@@ -120,8 +116,7 @@ describe('As admin user I can also view', () => {
     await page.open('1001last');
 
     const selector = '.nd-content #lci-result';
-    const node = await page.waitForSelector(selector);
-    expect(node).not.toBeNull();
+    await expect(page.page).toMatchElement(selector);
 
     await page.close();
   });
