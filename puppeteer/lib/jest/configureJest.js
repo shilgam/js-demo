@@ -1,6 +1,9 @@
-/* global jest */
+// global jest
 
-import config from 'config';
+import setupExpectPuppeteer from '../helper/expectPuppeteer/setup';
 
-const jestConfig = config.get('jest');
-jest.setTimeout(jestConfig.JEST_TIMEOUT);
+import setupJest from '../helper/jest/setup';
+
+// TODO: fix double calling
+setupJest();
+setupExpectPuppeteer();

@@ -8,5 +8,8 @@
   },
   "app": {
     "APP_URL": "http://acc-lci.ninthdecimal.com"
+  },
+  "expect-puppeteer": {
+    "EXPECT_TIMEOUT": 10000,
   }
 }
