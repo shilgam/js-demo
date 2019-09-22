@@ -1,4 +1,3 @@
-import LoginPage from '../lib/pages/login.page';
 import CampDetailsPage from '../lib/pages/campDetails.page';
 import SearchPage from '../lib/pages/search.page';
 import ChangePasswordPage from '../lib/pages/changePassword.page';
@@ -7,19 +6,24 @@ import CustomReportUploadPage from '../lib/pages/customReportUpload.page';
 import UsersPage from '../lib/pages/users.page';
 import ManageAlertsPage from '../lib/pages/manageAlerts.page';
 import CustomReportPage from '../lib/pages/customReport.page';
+import CampIndex from '../lib/pages/campIndex.page';
+import { loginAsRegularUser, loginAsAdminUser } from '../lib/steps/login';
 
 
 describe('As regular user I can view', () => {
   test('Index Page', async () => {
-    const page = new LoginPage();
-    await page.init();
-    await page.open();
-    const indexPage = await page.login(process.env.USERNAME_REGULAR, process.env.PASSWORD_REGULAR);
+    await loginAsRegularUser();
+
+    const indexPage = new CampIndex();
+    await indexPage.init();
+    await indexPage.open();
 
     const campListSelector = '.teams.list-view';
     await expect(indexPage.page).toMatchElement(campListSelector);
 
-    await page.close();
+    await indexPage.page.waitFor(3000);
+
+    await indexPage.close();
   });
 
   test('Campaign Details Page', async () => {
@@ -61,10 +65,7 @@ describe('As regular user I can view', () => {
 
 describe('As admin user I can also view', () => {
   test('Data Approvals page', async () => {
-    const page = new LoginPage();
-    await page.init();
-    await page.open();
-    await page.login(process.env.USERNAME_ADMIN, process.env.PASSWORD_ADMIN);
+    await loginAsAdminUser();
 
     const aprrovalsPage = new DataApprovalsPage();
     await aprrovalsPage.init();
@@ -73,7 +74,6 @@ describe('As admin user I can also view', () => {
     const selector = '.approval-table';
     await expect(aprrovalsPage.page).toMatchElement(selector);
 
-    await page.close();
     await aprrovalsPage.close();
   });
 
@@ -117,6 +117,8 @@ describe('As admin user I can also view', () => {
 
     const selector = '.nd-content #lci-result';
     await expect(page.page).toMatchElement(selector);
+
+    await page.header.logout();
 
     await page.close();
   });
