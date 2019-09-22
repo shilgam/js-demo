@@ -1,12 +1,12 @@
-import LoginPage from '../../lib/pages/login.page';
-import CampDetailsPage from '../../lib/pages/campDetails.page';
-import SearchPage from '../../lib/pages/search.page';
-import ChangePasswordPage from '../../lib/pages/changePassword.page';
-import DataApprovalsPage from '../../lib/pages/dataApprovals.page';
-import CustomReportUploadPage from '../../lib/pages/customReportUpload.page';
-import UsersPage from '../../lib/pages/users.page';
-import ManageAlertsPage from '../../lib/pages/manageAlerts.page';
-import CustomReportPage from '../../lib/pages/customReport.page';
+import LoginPage from '../lib/pages/login.page';
+import CampDetailsPage from '../lib/pages/campDetails.page';
+import SearchPage from '../lib/pages/search.page';
+import ChangePasswordPage from '../lib/pages/changePassword.page';
+import DataApprovalsPage from '../lib/pages/dataApprovals.page';
+import CustomReportUploadPage from '../lib/pages/customReportUpload.page';
+import UsersPage from '../lib/pages/users.page';
+import ManageAlertsPage from '../lib/pages/manageAlerts.page';
+import CustomReportPage from '../lib/pages/customReport.page';
 
 
 describe('As regular user I can view', () => {
