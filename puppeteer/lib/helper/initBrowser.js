@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer'); // eslint-disable-line
-const puppeteerConfig = require('./puppeteer/config');
+const puppConfig = require('./puppeteer/config');
 
 const { createTmpDirPath, createTmpDir, writeToFile } = require('../helper/filesystem.js');
 
@@ -13,6 +13,7 @@ async function initBrowser() {
       // This will write shared memory files into /tmp instead of /dev/shm,
       // because Docker’s default for /dev/shm is 64MB
       '--disable-dev-shm-usage',
+      `--window-size=${puppConfig.SCREEN_WIDTH},${puppConfig.SCREEN_HEIGHT}`,
     ],
   };
 
@@ -21,7 +22,7 @@ async function initBrowser() {
       ...options,
       ...{
         headless: false,
-        slowMo: puppeteerConfig.SLOW_MO_TIME, // slow down (in millisec)
+        slowMo: puppConfig.SLOW_MO_TIME, // slow down (in millisec)
         // devtools: true, // required for debugger
       },
     };

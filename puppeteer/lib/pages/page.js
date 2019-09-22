@@ -1,4 +1,5 @@
 import appConfig from '../appConfig';
+import puppConfig from '../helper/puppeteer/config';
 import Header from './components/header';
 
 export default class Page {
@@ -10,6 +11,10 @@ export default class Page {
 
   async init() {
     this.page = await this.browser.newPage();
+    await this.page.setViewport({
+      width: puppConfig.SCREEN_WIDTH,
+      height: puppConfig.SCREEN_HEIGHT,
+    });
     this.header = new Header(this.page);
   }
 
