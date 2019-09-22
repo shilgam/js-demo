@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer'); // eslint-disable-line
-const config = require('config');
+const puppeteerConfig = require('./puppeteer/config');
+
 const { createTmpDirPath, createTmpDir, writeToFile } = require('../helper/filesystem.js');
 
 async function initBrowser() {
@@ -14,8 +15,6 @@ async function initBrowser() {
       '--disable-dev-shm-usage',
     ],
   };
-
-  const puppeteerConfig = config.get('puppeteer');
 
   if (process.env.HEADLESS === '0') {
     options = {
