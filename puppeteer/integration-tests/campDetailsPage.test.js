@@ -3,10 +3,19 @@ import CampDetailsPage from '../lib/pages/campDetails.page';
 
 
 describe('As regular user I want', () => {
-  test('to access campaign Detail page', async () => {
-    await loginAsRegularUser();
+  let page;
 
-    const page = new CampDetailsPage();
+  beforeAll(async () => {
+    await loginAsRegularUser();
+  });
+
+  afterAll(async () => {
+    await page.header.logout();
+    await page.close();
+  });
+
+  test('to access campaign Detail page', async () => {
+    page = new CampDetailsPage();
     await page.init();
     await page.open(1001);
 
@@ -26,7 +35,7 @@ describe('As regular user I want', () => {
   });
 
   test('to download XLSX reports', async () => {
-    const page = new CampDetailsPage();
+    page = new CampDetailsPage();
     await page.init();
     await page.open(1001);
 
@@ -34,6 +43,5 @@ describe('As regular user I want', () => {
     await expect(page.page).toClick('button', { text: 'Download' });
 
     await page.header.logout();
-    await page.close();
   });
 });

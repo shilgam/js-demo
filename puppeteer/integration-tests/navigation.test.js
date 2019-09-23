@@ -11,23 +11,30 @@ import { loginAsRegularUser, loginAsAdminUser } from '../lib/steps/login';
 
 
 describe('As regular user I can view', () => {
-  test('Index Page', async () => {
-    await loginAsRegularUser();
+  let page;
 
-    const indexPage = new CampIndex();
-    await indexPage.init();
-    await indexPage.open();
+  beforeAll(async () => {
+    await loginAsRegularUser();
+  });
+
+  afterAll(async () => {
+    await page.header.logout();
+    await page.close();
+  });
+
+  test('Index Page', async () => {
+    page = new CampIndex();
+    await page.init();
+    await page.open();
 
     const campListSelector = '.teams.list-view';
-    await expect(indexPage.page).toMatchElement(campListSelector);
+    await expect(page.page).toMatchElement(campListSelector);
 
-    await indexPage.page.waitFor(3000);
-
-    await indexPage.close();
+    await page.close();
   });
 
   test('Campaign Details Page', async () => {
-    const page = new CampDetailsPage();
+    page = new CampDetailsPage();
     await page.init();
     await page.open(1001);
 
@@ -38,7 +45,7 @@ describe('As regular user I can view', () => {
   });
 
   test('Search Page', async () => {
-    const page = new SearchPage();
+    page = new SearchPage();
     await page.init();
     await page.open();
 
@@ -49,36 +56,41 @@ describe('As regular user I can view', () => {
   });
 
   test('Change Password Page', async () => {
-    const page = new ChangePasswordPage();
+    page = new ChangePasswordPage();
     await page.init();
     await page.open();
 
     const selector = '.nd-content h1';
     await expect(page.page).toMatchElement(selector, { text: 'Change Password' });
-
-    await page.header.logout();
-
-    await page.close();
   });
 });
 
 
 describe('As admin user I can also view', () => {
-  test('Data Approvals page', async () => {
-    await loginAsAdminUser();
+  let page;
 
-    const aprrovalsPage = new DataApprovalsPage();
-    await aprrovalsPage.init();
-    await aprrovalsPage.open();
+  beforeAll(async () => {
+    await loginAsAdminUser();
+  });
+
+  afterAll(async () => {
+    await page.header.logout();
+    await page.close();
+  });
+
+  test('Data Approvals page', async () => {
+    page = new DataApprovalsPage();
+    await page.init();
+    await page.open();
 
     const selector = '.approval-table';
-    await expect(aprrovalsPage.page).toMatchElement(selector);
+    await expect(page.page).toMatchElement(selector);
 
-    await aprrovalsPage.close();
+    await page.close();
   });
 
   test('Custom Report Upload page', async () => {
-    const page = new CustomReportUploadPage();
+    page = new CustomReportUploadPage();
     await page.init();
     await page.open();
 
@@ -89,7 +101,7 @@ describe('As admin user I can also view', () => {
   });
 
   test('Users page', async () => {
-    const page = new UsersPage();
+    page = new UsersPage();
     await page.init();
     await page.open();
 
@@ -100,7 +112,7 @@ describe('As admin user I can also view', () => {
   });
 
   test('Manage Alerts page', async () => {
-    const page = new ManageAlertsPage();
+    page = new ManageAlertsPage();
     await page.init();
     await page.open();
 
@@ -111,15 +123,11 @@ describe('As admin user I can also view', () => {
   });
 
   test('Custom LCIv2 Report page', async () => {
-    const page = new CustomReportPage();
+    page = new CustomReportPage();
     await page.init();
     await page.open('1001last');
 
     const selector = '.nd-content #lci-result';
     await expect(page.page).toMatchElement(selector);
-
-    await page.header.logout();
-
-    await page.close();
   });
 });
