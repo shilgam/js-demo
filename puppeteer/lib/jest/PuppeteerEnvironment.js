@@ -1,7 +1,7 @@
 // custom jest-environment
 const NodeEnvironment = require('jest-environment-node');
 const puppeteer = require('puppeteer'); // eslint-disable-line
-const puppeteerConfig = require('../helper/puppeteer/config');
+const puppConfig = require('../helper/puppeteer/config');
 
 const { createTmpDirPath, readFileFromDir } = require('../helper/filesystem.js');
 
@@ -24,7 +24,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
     if (process.env.HEADLESS === '0') {
       options = {
         ...options,
-        slowMo: puppeteerConfig.SLOW_MO_TIME,
+        slowMo: puppConfig.SLOW_MO_TIME,
       };
     }
 

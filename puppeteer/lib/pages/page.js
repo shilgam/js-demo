@@ -1,4 +1,5 @@
 import appConfig from './appConfig';
+import puppConfig from '../helper/puppeteer/config';
 
 export default class Page {
   constructor(page = null) {
@@ -8,6 +9,10 @@ export default class Page {
 
   async init() {
     this.page = await this.browser.newPage();
+    await this.page.setViewport({
+      width: puppConfig.SCREEN_WIDTH,
+      height: puppConfig.SCREEN_HEIGHT,
+    });
   }
 
   async open(path) {

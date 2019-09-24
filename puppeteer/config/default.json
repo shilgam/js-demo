@@ -5,6 +5,8 @@
   },
   "puppeteer": {
     "SLOW_MO_TIME": 40, // slow down puppeteer (in millisec)
+    "SCREEN_WIDTH": 1280,
+    "SCREEN_HEIGHT": 800,
   },
   "expect-puppeteer": {
     "EXPECT_TIMEOUT": 600,
