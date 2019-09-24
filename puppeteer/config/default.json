@@ -6,6 +6,9 @@
   "puppeteer": {
     "SLOW_MO_TIME": 40, // slow down puppeteer (in millisec)
   },
+  "expect-puppeteer": {
+    "EXPECT_TIMEOUT": 600,
+  },
   "app": {
     "APP_URL": "http://app:8080"
   }
