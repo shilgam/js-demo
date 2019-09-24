@@ -1,5 +1,4 @@
 const puppeteer = require('puppeteer'); // eslint-disable-line
-const config = require('config');
 const { createTmpDirPath, createTmpDir, writeToFile } = require('../helper/filesystem.js');
 
 async function initBrowser() {
@@ -15,14 +14,11 @@ async function initBrowser() {
     ],
   };
 
-  const puppeteerConfig = config.get('puppeteer');
-
   if (process.env.HEADLESS === '0') {
     options = {
       ...options,
       ...{
         headless: false,
-        slowMo: puppeteerConfig.SLOW_MO_TIME, // slow down (in millisec)
         // devtools: true, // required for debugger
       },
     };

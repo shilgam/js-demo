@@ -1,6 +1,7 @@
 // custom jest-environment
 const NodeEnvironment = require('jest-environment-node');
 const puppeteer = require('puppeteer'); // eslint-disable-line
+const puppeteerConfig = require('../helper/puppeteer/config');
 
 const { createTmpDirPath, readFileFromDir } = require('../helper/filesystem.js');
 
@@ -17,6 +18,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
     // connect to puppeteer
     this.global.__BROWSER__ = await puppeteer.connect({
       browserWSEndpoint: wsEndpoint,
+      slowMo: puppeteerConfig.SLOW_MO_TIME, // slow down (in millisec)
     });
   }
 
