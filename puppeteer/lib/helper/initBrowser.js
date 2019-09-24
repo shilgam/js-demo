@@ -17,10 +17,8 @@ async function initBrowser() {
   if (process.env.HEADLESS === '0') {
     options = {
       ...options,
-      ...{
-        headless: false,
-        // devtools: true, // required for debugger
-      },
+      headless: false,
+      // devtools: true, // required for debugger
     };
   }
 

@@ -20,7 +20,7 @@ describe('Test suite', () => {
     await page.fillPasswordField('mySecretPassword');
     await page.clickSubmitBtn();
     const alertHtml = await page.getAlertMsg();
-    expect(alertHtml).toEqual(expect.stringContaining('Your form has been submitted!'));
+    expect(alertHtml).toMatch('Your form has been submitted!');
     await page.close();
   });
 

@@ -17,17 +17,15 @@ class ActionsPage extends Page {
   }
 
   async fillEmailField(value) {
-    super.fillField('.action-email', value);
+    await super.fillField('.action-email', value);
   }
 
   async fillPasswordField(value) {
-    super.fillField('#password1', value);
+    await super.fillField('#password1', value);
   }
 
   async clickSubmitBtn() {
-    const selector = '.action-form button';
-    await this.page.waitFor(500); // TODO: implement wait for parent element change
-    await this.page.click(selector);
+    await expect(this.page).toClick('button', { text: 'Submit' });
   }
 
   async getAlertMsg() {

@@ -32,8 +32,7 @@ export default class Page {
   }
 
   async fillField(selector, value) {
-    await this.page.focus(selector);
-    await this.page.type(selector, value);
+    await expect(this.page).toFill(selector, value);
   }
 
   async debugger() {

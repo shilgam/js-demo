@@ -15,11 +15,20 @@ class PuppeteerEnvironment extends NodeEnvironment {
     if (!wsEndpoint) {
       throw new Error('wsEndpoint not found');
     }
+
     // connect to puppeteer
-    this.global.__BROWSER__ = await puppeteer.connect({
+    let options = {
       browserWSEndpoint: wsEndpoint,
-      slowMo: puppeteerConfig.SLOW_MO_TIME, // slow down (in millisec)
-    });
+    };
+
+    if (process.env.HEADLESS === '0') {
+      options = {
+        ...options,
+        slowMo: puppeteerConfig.SLOW_MO_TIME,
+      };
+    }
+
+    this.global.__BROWSER__ = await puppeteer.connect(options);
   }
 
   async teardown() {
