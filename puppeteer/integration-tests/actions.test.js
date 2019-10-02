@@ -1,25 +1,37 @@
-import ActionsPage from '../lib/pages/actions.page';
+import appConfig from '../lib/pages/appConfig';
 
-describe('Test suite', () => {
-  test('Create screenshot of the page', async () => {
-    const page = new ActionsPage();
-    await page.init();
-    await page.open();
+describe('Actions', () => {
+  let page;
 
-    // single selection
-    const selector = '.action-select';
-    await page.page.focus(selector);
-    await page.page.select(selector, 'fr-bananas');
+  beforeAll(async () => {
+    page = await global.__BROWSER__.newPage();
+    const pageUrl = `${appConfig.APP_URL}/commands/actions`;
+    await page.goto(pageUrl);
+  });
 
-    // multiple selections
-    const selectorMultiselect = '.action-select-multiple';
-    await page.page.select(selectorMultiselect, 'fr-bananas', 'fr-oranges');
-
-    // scroll to element
-    await page.page.evaluate(() => {
-      document.querySelector('#scroll-horizontal button').scrollIntoView();
-    });
-
+  afterAll(async () => {
     await page.close();
+  });
+
+  test('single selection', async () => {
+    const selector = '.action-select';
+    await page.focus(selector);
+    await page.select(selector, 'fr-bananas');
+  });
+
+  test('multiple selections', async () => {
+    const selector = '.action-select-multiple';
+    await page.select(selector, 'fr-bananas', 'fr-oranges');
+  });
+
+  test('scroll to element', async () => {
+    await page.evaluate(() => {
+      const selector = '#scroll-horizontal button';
+      document.querySelector(selector).scrollIntoView();
+    });
+  });
+
+  test('Create screenshot of the page', async () => {
+    await page.screenshot({ path: './screenshots/sampleScript.png' });
   });
 });
