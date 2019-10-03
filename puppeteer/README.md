@@ -1,5 +1,7 @@
 # Puppeteer
 
+[Slides](https://shilgam.github.io/reveal.js/slides/puppeteer/)
+
 ## Prerequisites
 
 1. Docker and docker-compose installed
