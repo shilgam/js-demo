@@ -2,6 +2,8 @@
 
 [Slides](https://shilgam.github.io/reveal.js/slides/puppeteer/)
 
+[Screencast (Rus)](https://www.youtube.com/watch?v=jTDO5ZOy5xY)
+
 ## Prerequisites
 
 1. Docker and docker-compose installed
