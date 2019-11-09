@@ -2,13 +2,19 @@ import appConfig from '../appConfig';
 import puppConfig from '../helper/puppeteer/config';
 
 export default class Page {
-  constructor(page = null) {
-    this.browser = global.__BROWSER__;
+  constructor(browserContext = null, page = null) {
+    this.browserContext = browserContext;
     this.page = page;
   }
 
   async init() {
-    this.page = await this.browser.newPage();
+    const browser = global.__BROWSER__;
+
+    if (this.browserContext == null) {
+      this.browserContext = await browser.createIncognitoBrowserContext();
+    }
+
+    this.page = await this.browserContext.newPage();
     await this.page.setViewport({
       width: puppConfig.SCREEN_WIDTH,
       height: puppConfig.SCREEN_HEIGHT,

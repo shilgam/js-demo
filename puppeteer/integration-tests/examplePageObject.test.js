@@ -2,15 +2,21 @@ import ActionsPage from '../lib/pages/actions.page';
 
 describe('PageObject example', () => {
   let page;
+  let browserContext;
 
   beforeAll(async () => {
-    page = new ActionsPage();
+    const actionsPage = new ActionsPage();
+    await actionsPage.init();
+    browserContext = actionsPage.browserContext; // eslint-disable-line
+
+    page = new ActionsPage(browserContext);
     await page.init();
     await page.open();
   });
 
   afterAll(async () => {
     await page.close();
+    await browserContext.close();
   });
 
   test('fill the form', async () => {

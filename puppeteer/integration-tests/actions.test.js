@@ -2,15 +2,19 @@ import appConfig from '../lib/appConfig';
 
 describe('Actions', () => {
   let page;
+  let browserContext;
 
   beforeAll(async () => {
-    page = await global.__BROWSER__.newPage();
+    const browser = global.__BROWSER__;
+    browserContext = await browser.createIncognitoBrowserContext();
+    page = await browserContext.newPage();
     const pageUrl = `${appConfig.APP_URL}/commands/actions`;
     await page.goto(pageUrl);
   });
 
   afterAll(async () => {
     await page.close();
+    await browserContext.close();
   });
 
   test('single selection', async () => {

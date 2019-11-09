@@ -60,3 +60,5 @@
 ADDITIONAL INFO:
 
 * official guide for using Jest with Puppeteer: https://jestjs.io/docs/en/puppeteer
+
+* Specify `JEST_MAX_WORKERS=1` to run tests serially in one process.
