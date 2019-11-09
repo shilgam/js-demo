@@ -1,4 +1,4 @@
-import appConfig from './appConfig';
+import appConfig from '../appConfig';
 import puppConfig from '../helper/puppeteer/config';
 
 export default class Page {

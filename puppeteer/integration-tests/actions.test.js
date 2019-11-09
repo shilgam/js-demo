@@ -1,4 +1,4 @@
-import appConfig from '../lib/pages/appConfig';
+import appConfig from '../lib/appConfig';
 
 describe('Actions', () => {
   let page;
