@@ -3,3 +3,4 @@ node_modules/
 
 # Puppeteer Artifacts
 screenshots/
+tmp/

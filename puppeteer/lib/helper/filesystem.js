@@ -1,6 +1,5 @@
 
 const fs = require('fs');
-const mkdirp = require('mkdirp');
 const rimraf = require('rimraf');
 const os = require('os');
 const path = require('path');
@@ -10,7 +9,7 @@ function createTmpDirPath() {
 }
 
 function createTmpDir(dirPath) {
-  mkdirp.sync(dirPath);
+  fs.mkdirSync(dirPath, { recursive: true });
 }
 
 function removeTmpDir(dir) {
@@ -21,8 +20,26 @@ function readFileFromDir(dir, filename) {
   return fs.readFileSync(path.join(dir, filename), 'utf8');
 }
 
-function writeToFile(dir, filename, content) {
-  return fs.writeFileSync(path.join(dir, filename), content);
+function writeToFile(pathToFile, content) {
+  const pathToDir = path.dirname(pathToFile);
+  fs.mkdirSync(pathToDir, { recursive: true });
+  fs.writeFileSync(pathToFile, content, (err) => {
+    if (err) {
+      console.info('Error writing file', err);
+    }
+  });
+}
+
+function readFromFile(pathToFile) {
+  return fs.readFileSync(pathToFile, 'utf8', (err) => {
+    if (err) {
+      console.info('File read failed:', err);
+    }
+  });
+}
+
+function fileExists(pathToFile) {
+  return fs.existsSync(pathToFile);
 }
 
 module.exports = {
@@ -31,4 +48,6 @@ module.exports = {
   removeTmpDir,
   readFileFromDir,
   writeToFile,
+  readFromFile,
+  fileExists,
 };

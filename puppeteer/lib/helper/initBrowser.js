@@ -33,7 +33,9 @@ async function initBrowser() {
   const DIR = createTmpDirPath();
   createTmpDir(DIR);
 
-  writeToFile(DIR, 'wsEndpoint', browser.wsEndpoint());
+  const pathToFile = `${DIR}/wsEndpoint`;
+  const wsEndpointAddr = browser.wsEndpoint();
+  writeToFile(pathToFile, wsEndpointAddr);
 }
 
 module.exports = initBrowser;

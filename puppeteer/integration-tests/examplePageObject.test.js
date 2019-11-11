@@ -1,12 +1,12 @@
 import ActionsPage from '../lib/pages/actions.page';
+import loginAs from '../lib/steps/login';
 
 describe('PageObject example', () => {
   let page;
   let browserContext;
 
   beforeAll(async () => {
-    const actionsPage = new ActionsPage();
-    await actionsPage.init();
+    const actionsPage = await loginAs('user@gmail.com');
     browserContext = actionsPage.browserContext; // eslint-disable-line
 
     page = new ActionsPage(browserContext);

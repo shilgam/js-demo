@@ -5,7 +5,7 @@ const puppConfig = require('../helper/puppeteer/config');
 
 const { createTmpDirPath, readFileFromDir } = require('../helper/filesystem.js');
 
-const DIR = createTmpDirPath('jest_puppeteer_global_setup');
+const DIR = createTmpDirPath();
 
 class PuppeteerEnvironment extends NodeEnvironment {
   async setup() {
