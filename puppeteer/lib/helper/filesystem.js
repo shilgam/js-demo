@@ -1,23 +1,13 @@
-
 const fs = require('fs');
 const rimraf = require('rimraf');
-const os = require('os');
 const path = require('path');
 
-function createTmpDirPath() {
-  return path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
+function tmpDirPath() {
+  return '/usr/src/app/tmp';
 }
 
-function createTmpDir(dirPath) {
-  fs.mkdirSync(dirPath, { recursive: true });
-}
-
-function removeTmpDir(dir) {
+function removeDir(dir) {
   rimraf.sync(dir);
-}
-
-function readFileFromDir(dir, filename) {
-  return fs.readFileSync(path.join(dir, filename), 'utf8');
 }
 
 function writeToFile(pathToFile, content) {
@@ -43,10 +33,8 @@ function fileExists(pathToFile) {
 }
 
 module.exports = {
-  createTmpDirPath,
-  createTmpDir,
-  removeTmpDir,
-  readFileFromDir,
+  tmpDirPath,
+  removeDir,
   writeToFile,
   readFromFile,
   fileExists,

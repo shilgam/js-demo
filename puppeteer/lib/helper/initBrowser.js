@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer'); // eslint-disable-line
 const puppConfig = require('./puppeteer/config');
-const { createTmpDirPath, createTmpDir, writeToFile } = require('../helper/filesystem.js');
+const { tmpDirPath, writeToFile } = require('../helper/filesystem.js');
 
 async function initBrowser() {
   console.info('\n>>>>>>> Setup puppeteer');
@@ -30,10 +30,8 @@ async function initBrowser() {
   global.__BROWSER_GLOBAL__ = browser;
 
   // Instead, we expose the connection details via file system to be used in tests
-  const DIR = createTmpDirPath();
-  createTmpDir(DIR);
-
-  const pathToFile = `${DIR}/wsEndpoint`;
+  const pathToDir = `${tmpDirPath()}/jest_puppeteer_global_setup`;
+  const pathToFile = `${pathToDir}/wsEndpoint`;
   const wsEndpointAddr = browser.wsEndpoint();
   writeToFile(pathToFile, wsEndpointAddr);
 }

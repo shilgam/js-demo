@@ -2,16 +2,15 @@
 const NodeEnvironment = require('jest-environment-node');
 const puppeteer = require('puppeteer'); // eslint-disable-line
 const puppConfig = require('../helper/puppeteer/config');
+const { tmpDirPath, readFromFile } = require('../helper/filesystem.js');
 
-const { createTmpDirPath, readFileFromDir } = require('../helper/filesystem.js');
-
-const DIR = createTmpDirPath();
+const pathToDir = `${tmpDirPath()}/jest_puppeteer_global_setup`;
 
 class PuppeteerEnvironment extends NodeEnvironment {
   async setup() {
     await super.setup();
     // get the wsEndpoint
-    const wsEndpoint = readFileFromDir(DIR, 'wsEndpoint');
+    const wsEndpoint = readFromFile(`${pathToDir}/wsEndpoint`);
     if (!wsEndpoint) {
       throw new Error('wsEndpoint not found');
     }

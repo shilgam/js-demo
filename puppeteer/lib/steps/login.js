@@ -1,11 +1,13 @@
-import { writeToFile, readFromFile, fileExists } from '../helper/filesystem';
+import {
+  tmpDirPath, writeToFile, readFromFile, fileExists,
+} from '../helper/filesystem';
 
 import ActionsPage from '../pages/actions.page';
 
 async function loginAs(username) {
   let initializedPage;
 
-  const pathToDir = '/usr/src/app/tmp/cookies';
+  const pathToDir = `${tmpDirPath()}/cookies`;
   const pathToFile = `${pathToDir}/${username}.json`;
 
   if (fileExists(pathToFile)) {
